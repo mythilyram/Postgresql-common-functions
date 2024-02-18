@@ -227,3 +227,11 @@ FROM item i
 JOIN slogan s
 ON i.id = s.item_id
 WHERE s.type = 'tv commercial'
+
+name		type			explosive_text
+WashPow(d)er	washing powder	Feel the difference!!! Feel the powder!!!
+riVer Flow	non-alcoholic cocktail	Get enthusiastic - even without alcohol!!!
+Vacum2000	vacuum cleaner	Cleaning the apartment is a matter of seconds!!!
+TripCare	backpack	You'll simply love it!!!
+
+
