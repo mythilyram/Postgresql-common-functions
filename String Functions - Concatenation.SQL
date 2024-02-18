@@ -1,15 +1,17 @@
 The concatenation || operator
-Okay, let's begin. First, we'll need a new operator: ||. These two vertical bars are the concatenation operator, i.e., they join two or more text values (or strings, which is another name for text). If you write the following:
+Okay, let's begin. First, we'll need a new operator: ||. These two vertical bars are the concatenation operator, i.e., they join two or more text values (or strings, which is another name for text). 
+If you write the following:
 
 SELECT first_name || last_name
 FROM copywriter;
 The result for first_name = 'Kate' and last_name = 'Gordon' will be KateGordon, all in a single column. Quite simple, right?
 
-Of course we want the first and last name separated with a space. Here's how you do it:
+Of course we want the first and last name separated with a space. Here is how you do it:
 
 SELECT first_name || ' ' || last_name
 FROM copywriter;
-Note that you use apostrophes for specific constant text values (a space in our example: ' '), but you don't use apostrophes for column names (first_name, last_name). The operator || can be used as many times as you need in a single query.
+Note that you use apostrophes for specific constant text values (a space in our example: ' '), but you don''t use apostrophes for column names (first_name, last_name). 
+The operator || can be used as many times as you need in a single query.
 
 Exercise
 For each item, select its name, type, and in the third column named slogan_type both values joined by a dash ('-'):
