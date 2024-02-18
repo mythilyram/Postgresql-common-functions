@@ -89,7 +89,7 @@ text	                                          updated_text
 Feel the difference. Feel the powder.	    Touch the difference. Touch the powder.
 
 The TRANSLATE() function
-PostgreSQL provides another function similar to REPLACE(). It's TRANSLATE(), and it looks like this:
+PostgreSQL provides another function similar to REPLACE(). It is TRANSLATE(), and it looks like this:
 
 TRANSLATE(string_to_search, old_characters, new_characters)
 This function searches string_to_search, which can be an actual string or a field in the database, for the characters in old_characters.
@@ -100,7 +100,7 @@ SELECT
   text,
   TRANSLATE(text, ' .', '*!') AS translated_text
 FROM slogan;
-This will change the text of the slogans in the slogan table. The characters we're replacing are ' .' – spaces and periods.
+This will change the text of the slogans in the slogan table. The characters we are replacing are ' .' – spaces and periods.
 We want to translate them to '*!': all spaces are replaced with the asterisks and all dots are replaced with the exclamation marks. Look at the result:
 
 id	text	translated_text
