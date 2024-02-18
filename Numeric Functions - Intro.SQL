@@ -324,8 +324,321 @@ Duroso	2
 Rolamar	3
 Avealath	1
 
+The ROUND() function
+Good! Now you know how to subtract and divide in PostgreSQL, let's discuss other numeric functions. One of them is ROUND(x). 
+This function will round the number within parentheses to the nearest integer number. This is standard mathematical rounding: 
+any decimal part equal to or greater than 0.5 will be rounded up.
+
+SELECT ROUND(account_balance)
+FROM character
+WHERE id = 1;
+The above query will take the account_balance of the character with ID of 1 (which is 899.34) and round it to the nearest integer (to 899). 
+
+Remember that ROUND() won't change the type of the value returned.
+
+Exercise
+For each character, show its name, its actual account_balance, and their account balance rounded to the nearest integer as the integer_balance column.
+Notice how rounding is applied.
+
+SELECT
+	name, 
+    account_balance,
+    ROUND(account_balance) AS integer_balance
+FROM character
+
+name	account_balance	integer_balance
+Kav	899.34	899
+Gniok	423.83	424
+Mnah	0.00	0
+Balryll	723.12	723
+Mnadjaid	4321.93	4322
+Duroso	7231.32	7231
+Rolamar	753.42	753
+Avealath	1023.00	1023
+
+Precision in ROUND()
+Good! There is also another version of round, which takes two arguments: ROUND(x, precision). The second argument is new and specifies the number of decimal places to be returned. For example,
+
+SELECT ROUND(136.123, 2);
+will return 136.12. Let's try it out.
+
+Exercise
+Show each character's name, its actual account_balance, and the account balance rounded to a single decimal place as the rounded_balance column.
+
+SELECT
+	name, 
+    account_balance,
+    ROUND(account_balance,1) AS rounded_balance
+FROM character
+
+name	account_balance	rounded_balance
+Kav	899.34	899.3
+Gniok	423.83	423.8
+Mnah	0.00	0.0
+Balryll	723.12	723.1
+Mnadjaid	4321.93	4321.9
+Duroso	7231.32	7231.3
+Rolamar	753.42	753.4
+Avealath	1023.00	1023.0
+
+ROUND() in PostgreSQL – explanation
+Nice job! Before we move on, let's discuss the data types that work with ROUND() in PostgreSQL:
+
+The single-argument function ROUND(x) accepts both numeric and double precision (floating-point number) data types.
+If you want to round a number with precision to a specific decimal place with the two-argument ROUND(x, precision) function, the number being rounded must be either a numeric or a decimal type.
+To round a floating point number and specify a precision at the same time, you have to first cast it as numeric. For example:
+
+SELECT ROUND(weight::numeric, 2) AS rounded_weight
+FROM character;
+will round the weight to two decimal places.
+
+Exercise
+Round height to two decimal places and show it as the rounded_height column.
+
+SELECT 
+	ROUND(height::numeric, 2) AS rounded_height
+FROM character;
+
+rounded_height
+1.72
+2.00
+1.93
+1.87
+null
+1.00
+1.85
+1.90
+
+Rounding up
+Awesome! Let's learn how to round in another way. Sometimes we want to round up. We can do it using the CEIL(number) function (or the CEILING(number) function which is an alias).
+
+Exercise
+Show the character's name and actual weight, followed by the weight rounded up as the weight_rounded_up column.
+
+SELECT 
+	name,
+    weight,
+    CEIL(weight) AS weight_rounded_UP
+FROM character;
+
+name	weight	weight_rounded_up
+Kav	65	65
+Gniok	101.4	102
+Mnah	80.3	81
+Balryll	78.9	79
+Mnadjaid	1.67	2
+Duroso	0.2	1
+Rolamar	91.3	92
+Avealath	95.2	96
+
+Rounding down
+Okay, that was the CEIL() function. Sometimes we need to round down, and the FLOOR(number) function will come in handy.
+
+Exercise
+Show each character's name, actual account_balance, and the account_balance rounded down as the balance_rounded_down column.
+
+SELECT 
+	name,
+    account_balance,
+    FLOOR(account_balance) AS balance_rounded_down
+FROM character;
+
+name	account_balance	balance_rounded_down
+Kav	899.34	899
+Gniok	423.83	423
+Mnah	0.00	0
+Balryll	723.12	723
+Mnadjaid	4321.93	4321
+Duroso	7231.32	7231
+Rolamar	753.42	753
+Avealath	1023.00	1023
+
+The TRUNC() function
+Good. Another function to practice is TRUNC(). It always rounds towards zero. As with ROUND(), there are two variants of TRUNC():
+
+The single-argument TRUNC(x) takes a number of type numeric or double precision.
+The two-argument TRUNC(x, p) takes an additional integer p argument which defines the number of decimal places.
+Take a look at the example:
+
+SELECT
+  name,
+  TRUNC(weight)    AS weight_no_decimal_places,
+  TRUNC(weight, 1) AS weight_one_decimal_place
+FROM character;
+But there's a catch! The same which was true for the ROUND() function. The query above won't work because you may define the number of decimal places only for the numeric types, so you should cast the value:
+
+SELECT
+  name,
+  TRUNC(weight)             AS weight_no_decimal_places,
+  TRUNC(weight::numeric, 1) AS weight_one_decimal_place
+FROM character;
+Result:
+
+name	weight_no_decimal_places	weight_one_decimal_place
+Kav	65.0	65.0
+Gniok	101.0	101.4
+...	...	...
+
+Exercise
+Show the character's name together with its account_balance, and the account balance truncated to one decimal place as the truncated_balance.
+
+SELECT
+  name,
+  account_balance,
+  TRUNC(account_balance::numeric, 1) AS truncated_balance
+FROM character;
 
 
+name	account_balance	truncated_balance
+Kav	899.34	899.3
+Gniok	423.83	423.8
+Mnah	0.00	0.0
+Balryll	723.12	723.1
+Mnadjaid	4321.93	4321.9
+Duroso	7231.32	7231.3
+Rolamar	753.42	753.4
+Avealath	1023.00	1023.0
 
+The ABS() function
+Good! Let's take a look at the ABS(x) function which returns the absolute value of x. Non-negative numbers will be expressed as they are, but negative ones will be expressed without the negative sign. Have a look:
+
+SELECT ABS(3), ABS(-3);
+The above query returns 3 twice. The absolute value of 3 is 3, as is the absolute value of -3.
+
+Exercise
+For each character, show its actual stat_modifier value and its stat_modifier's absolute value as the absolute_stat_modifier column.
+
+SELECT
+  stat_modifier,
+  ABS(stat_modifier) AS absolute_stat_modifier
+FROM character;
+stat_modifier	absolute_stat_modifier
+1	1
+4	4
+-1	1
+2	2
+61	61
+17	17
+-29	29
+17	17
+
+Summary
+Amazing! Now let's summarize what we've learned in this part:
+
+Computations using floating point numbers are not always exact. Use the decimal, numeric, or money data types for all money columns and whenever precision matters.
+Dividing two integers is integer division, which is not always accurate. Use CAST(column AS TYPE) or the :: operator to avoid it.
+Avoid division by zero.
+We've learned some useful functions:
+
+The modulo operation (x % y) returns the remainder of x by y division.
+ROUND(x, p) rounds x to the nearest integer or to the specified number of decimal digits (p).
+CEILING(x) rounds up to the nearest integer value.
+FLOOR(x) rounds down to the nearest integer value.
+ABS(x) returns the absolute value of x.
+TRUNC(x, p) – removes decimal digits given in p from the number x; TRUNC(x) removes all decimal digits.
+The :: operator and the CAST() function convert data types.
+The queries we've written so far have been fairly simple. Let's test your knowledge with some more advanced exercises.
+
+Exercise
+Calculate BMI for every character in the character table. BMI is calculated in the following way:
+
+BMI
+=
+weight in kilograms
+(
+height in meters
+)
+2
+BMI= 
+(height in meters) 
+2
+ 
+weight in kilograms
+​
+ 
+Round the result to integer. Show each character's name and their calculated BMI as the bmi column.
+
+Note: height is measured in meters. Remember to change the type of the ROUND() function's first argument to numeric.
+
+SELECT
+	name,
+	ROUND(weight::numeric/((height*height)::numeric)) AS bmi
+FROM character
+
+name	bmi
+Kav	22
+Gniok	25
+Mnah	22
+Balryll	23
+Mnadjaid	null
+Duroso	0
+Rolamar	27
+Avealath	26
+
+Exercise
+A healing potion costs 50 gold coins. Calculate how many healing potions each character (show their name column) 
+with an account balance of at least 100 can buy (name the column: potion_amount) and how much money that each character 
+will have left after that purchase (name the column: change).
+
+SELECT
+	name,
+    FLOOR(account_balance / 50) AS potion_amount,
+    account_balance % 50 AS change
+FROM character
+WHERE account_balance >= 100
+
+name	potion_amount	change
+Kav	17	49.34
+Gniok	8	23.83
+Balryll	14	23.12
+Mnadjaid	86	21.93
+Duroso	144	31.32
+Rolamar	15	3.42
+Avealath	20	23.00
+
+Exercise
+Each warrior at Level 3 or higher can perform a special attack whose damage is calculated as follows:
+
+Character's strength added to one-fourth of its hp, and then multiplied by the absolute value of stat_modifier. Here's the equation to visualize this:
+
+(strength + hp/4.0) * |stat_modifier|
+
+For characters who have this attack available, show the character's name and the amount of damage dealt by this attack (name the column: damage).
+SELECT 
+	name,
+	(strength+(hp/4.0))*ABS(stat_modifier) AS damage
+FROM character	
+WHERE 
+	class = 'warrior' AND 
+    level >= 3    
+
+name	damage
+Gniok	250
+Rolamar	1609.5
+Avealath	1283.5
+
+Exercise
+For players with ID of 1 or 5, show:
+
+First and last name joined by a single space as the player_name column.
+Their characters' level.
+Height rounded to one decimal place as the rounded_height column.
+Account balance rounded down to the nearest integer as the account_balance column.
+
+SELECT
+	CONCAT(first_name,' ',last_name) AS player_name,
+    level,
+    ROUND(height::numeric,1) AS rounded_height,
+    FLOOR(account_balance) AS account_balance
+FROM player p
+JOIN character c
+ON p.id = c.player_id
+WHERE p.id IN (1,5)
+
+player_name	level	rounded_height	account_balance
+Alan Gilman	3	1.7	899
+Alan Gilman	2	1.9	0
+Stephen Colvin	3	1.9	753
+Stephen Colvin	7	1.9	1023
 
 
