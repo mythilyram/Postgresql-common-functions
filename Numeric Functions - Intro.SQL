@@ -325,7 +325,7 @@ Rolamar	3
 Avealath	1
 
 The ROUND() function
-Good! Now you know how to subtract and divide in PostgreSQL, let's discuss other numeric functions. One of them is ROUND(x). 
+Good! Now you know how to subtract and divide in PostgreSQL, let us discuss other numeric functions. One of them is ROUND(x). 
 This function will round the number within parentheses to the nearest integer number. This is standard mathematical rounding: 
 any decimal part equal to or greater than 0.5 will be rounded up.
 
@@ -334,7 +334,7 @@ FROM character
 WHERE id = 1;
 The above query will take the account_balance of the character with ID of 1 (which is 899.34) and round it to the nearest integer (to 899). 
 
-Remember that ROUND() won't change the type of the value returned.
+Remember that ROUND() will not change the type of the value returned.
 
 Exercise
 For each character, show its name, its actual account_balance, and their account balance rounded to the nearest integer as the integer_balance column.
@@ -382,7 +382,7 @@ Rolamar	753.42	753.4
 Avealath	1023.00	1023.0
 
 ROUND() in PostgreSQL – explanation
-Nice job! Before we move on, let's discuss the data types that work with ROUND() in PostgreSQL:
+Nice job! Before we move on, let us discuss the data types that work with ROUND() in PostgreSQL:
 
 The single-argument function ROUND(x) accepts both numeric and double precision (floating-point number) data types.
 If you want to round a number with precision to a specific decimal place with the two-argument ROUND(x, precision) function, the number being rounded must be either a numeric or a decimal type.
@@ -410,10 +410,10 @@ null
 1.90
 
 Rounding up
-Awesome! Let's learn how to round in another way. Sometimes we want to round up. We can do it using the CEIL(number) function (or the CEILING(number) function which is an alias).
+Awesome! Let us learn how to round in another way. Sometimes we want to round up. We can do it using the CEIL(number) function (or the CEILING(number) function which is an alias).
 
 Exercise
-Show the character's name and actual weight, followed by the weight rounded up as the weight_rounded_up column.
+Show the character''s name and actual weight, followed by the weight rounded up as the weight_rounded_up column.
 
 SELECT 
 	name,
