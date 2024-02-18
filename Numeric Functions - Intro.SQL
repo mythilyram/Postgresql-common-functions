@@ -140,7 +140,7 @@ The account balance for Rolamar is 753.42.
 The account balance for Avealath is 1023.00.
 
 Problems with subtraction
-Great! In PostgreSQL, simple operations can get very tricky. Let's discuss some of them, starting with subtraction.
+Great! In PostgreSQL, simple operations can get very tricky. Let us discuss some of them, starting with subtraction.
 
 Exercise
 For a character named 'Mnah', select the name, weight, height, and the result of the following calculation:
@@ -162,7 +162,7 @@ Oops... Something went wrong. Why did we get such an odd result?
 
 The weight and height columns have a real data type, which is a floating point number. The internal representation is binary arithmetic, which means not all decimals can be represented precisely. Therefore, any computations are not performed exactly, as we can see.
 
-What can be done about it? Nothing! That's the way binary arithmetic works.
+What can be done about it? Nothing! That is the way binary arithmetic works.
 
 If you need exact computations, use decimal, numeric and money (for currency) data types. When dealing with money values, always use decimal, numeric or money data types. Floating point numbers are for "scientific" computations on various measurements, like weight and height.
 
@@ -171,7 +171,7 @@ Good job!
 
 Now you know that subtraction can be tricky. What about division?
 
-How much is 1 / 4? Let's check that.
+How much is 1 / 4? Let us check that.
 
 SELECT 1 / 4 AS result;
 
@@ -274,7 +274,7 @@ Now let's see what happens if you have many rows, of which only one contains div
 Exercise
 Warriors get their first wisdom points at Level 2 and we have one warrior at Level 1 with 0 Wisdom points. Let's see what happens.
 
-Run the template which, for each character, divides their mana points by their wisdom points. Then click I'm done. Next exercise.
+For each character, divides their mana points by their wisdom points. 
 
 SELECT
   name,
