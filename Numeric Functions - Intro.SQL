@@ -289,7 +289,7 @@ Oops! As you can see, the error occurs even if there is only a single row with a
 How can we deal with this? There are a few ways to solve the problem. For now, you can use the good old WHERE clause to filter out any rows that contain a zero:
 
 WHERE column_name != 0
-We'll discuss other methods of dealing with division by zero later in our course.
+We will discuss other methods of dealing with division by zero later in our course.
 
 Exercise
 In the template you can find the query from the previous exercise. Filter out rows with 0 wisdom points.
@@ -301,7 +301,7 @@ FROM character
 WHERE wisdom != 0;
 
 The modulo operator (%)
-Okay. There's one more useful operator related to division: the modulo operator (%). It returns the remainder of one number divided by another number, like this:
+Okay. There is one more useful operator related to division: the modulo operator (%). It returns the remainder of one number divided by another number, like this:
 
 x % y
 For instance, 9 % 7 will return 2, because 9 / 7 is 1 with 2 as the remainder. This operator works with integer and decimal numbers.
