@@ -181,4 +181,49 @@ REPLACE(string, from, to) will replace from with to in the string string.
 TRANSLATE(string, from, to) will make replacements in string based on the sets passed as strings into the from and to parameters.
 REPEAT(x, n) will return the x string repeated n times.
 
-Select
+Exercise
+Show the ID of each item, its name uppercased (as the upper_case column), and its reversed name (as the reversed column).
+
+	SELECT
+    	id,
+        UPPER(name) AS 	upper_case,
+        REVERSE(name) AS reversed
+   FROM
+   item
+
+id	upper_case	reversed
+1	WASHPOW(D)ER	re)d(woPhsaW
+2	RIVER FLOW	wolF reVir
+3	VACUM2000	0002mucaV
+4	TRIPCARE	eraCpirT
+5	VACUM2010	0102mucaV
+
+Exercise
+For each slogan longer than 20 characters, show a 20-character substring starting from the fifth position. Name the column sub_text.
+
+SELECT 
+	SUBSTRING(text,5,20) AS sub_text
+FROM slogan
+WHERE LENGTH(text) > 20
+
+sub_text
+the difference. Fee
+enthusiastic - even
+ning the apartment i
+ll simply love it.
+erful experience.
+ning your house has
+sure and responsibil
+traveller''s choice.
+
+Exercise
+For each 'tv commercial' slogan, show the item name, its type, and the slogan with each period (.) replaced with 
+three exclamation marks (!!!) as the explosive_text column.
+SELECT
+	name,
+    i.type,
+    REPLACE(text,'.','!!!') AS explosive_text
+FROM item i
+JOIN slogan s
+ON i.id = s.item_id
+WHERE s.type = 'tv commercial'
