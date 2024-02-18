@@ -435,7 +435,7 @@ Rounding down
 Okay, that was the CEIL() function. Sometimes we need to round down, and the FLOOR(number) function will come in handy.
 
 Exercise
-Show each character's name, actual account_balance, and the account_balance rounded down as the balance_rounded_down column.
+Show each character''s name, actual account_balance, and the account_balance rounded down as the balance_rounded_down column.
 
 SELECT 
 	name,
@@ -480,7 +480,7 @@ Gniok	101.0	101.4
 ...	...	...
 
 Exercise
-Show the character's name together with its account_balance, and the account balance truncated to one decimal place as the truncated_balance.
+Show the character''s name together with its account_balance, and the account balance truncated to one decimal place as the truncated_balance.
 
 SELECT
   name,
@@ -558,7 +558,7 @@ weight in kilograms
  
 Round the result to integer. Show each character's name and their calculated BMI as the bmi column.
 
-Note: height is measured in meters. Remember to change the type of the ROUND() function's first argument to numeric.
+Note: height is measured in meters. Remember to change the type of the ROUND() function''s first argument to numeric.
 
 SELECT
 	name,
@@ -603,7 +603,7 @@ Character's strength added to one-fourth of its hp, and then multiplied by the a
 
 (strength + hp/4.0) * |stat_modifier|
 
-For characters who have this attack available, show the character's name and the amount of damage dealt by this attack (name the column: damage).
+For characters who have this attack available, show the character''s name and the amount of damage dealt by this attack (name the column: damage).
 SELECT 
 	name,
 	(strength+(hp/4.0))*ABS(stat_modifier) AS damage
@@ -621,7 +621,7 @@ Exercise
 For players with ID of 1 or 5, show:
 
 First and last name joined by a single space as the player_name column.
-Their characters' level.
+Their characters'' level.
 Height rounded to one decimal place as the rounded_height column.
 Account balance rounded down to the nearest integer as the account_balance column.
 
