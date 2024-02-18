@@ -139,3 +139,19 @@ id	flight_date
 
 Exercise
 For every aircraft produced in 2010, show its ID, production date, and the route codes for all the distinct routes it flies.
+
+SELECT DISTINCT
+  aircraft.id,
+  produced_date,
+  route_code
+FROM aircraft
+JOIN flight
+  ON aircraft.id = flight.aircraft_id
+WHERE produced_date BETWEEN '2010-01-01' AND '2010-12-31';
+
+id	produced_date	route_code
+3	2010-03-01	PA5643
+3	2010-03-01	PA7653
+3	2010-03-01	PA8744
+15	2010-03-01	PA6851
+
