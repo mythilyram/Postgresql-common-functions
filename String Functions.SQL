@@ -135,13 +135,50 @@ SELECT REPEAT('.', 3) || name
 FROM item;
 This query returns the item name with three periods in front of it. Let's try this function out!
 
-Exercise
-Slogans with multiple star and dot characters (e.g., SLOGAN *.*.*.*.*.) are fashionable this season. 
-The marketing agency management has decided to change all slogans' texts to add at the end a space and a chain of five '.**.'. Name the column fashionable_text.
-
 ?column?
 ... WashPow(d)er
 ...riVer Flow
 ... Vacum2000
 ... TripCare
 ...Vacum2010
+
+Exercise
+Slogans with multiple star and dot characters (e.g., SLOGAN *.*.*.*.*.) are fashionable this season. 
+The marketing agency management has decided to change all slogans'' texts to add at the end a space and a chain of five '.**.'. Name the column fashionable_text.
+
+SELECT  
+	text || ' ' || REPEAT('.**.', 5) AS fashionable_text
+FROM slogan;
+
+fashionable_text
+Feel the difference. Feel the powder. .**..**..**..**..**.
+Get enthusiastic - even without alcohol. .**..**..**..**..**.
+Cleaning the apartment is a matter of seconds. .**..**..**..**..**.
+You'll simply love it. .**..**..**..**..**.
+Powderful experience. .**..**..**..**..**.
+Cleaning your house has never been so easy. .**..**..**..**..**.
+Pleasure and responsibility come together. .**..**..**..**..**.
+Each traveller's choice. .**..**..**..**..**.
+
+Summary
+Good!
+
+That's it for this section! Before we move on, let's review what we've learned:
+
+|| is the concatenation operator. The || operator and the CONCAT() function are the concatenation functions. Both merge multiple strings into one.
+LENGTH(s) returns the length of a string.
+LOWER() and UPPER() functions change all letters in a string to lowercase or uppercase.
+INITCAP(t) changes the first letter of each word of string t to title case.
+LTRIM(s), RTRIM(s), and TRIM(s) return a string after removing spaces from the left, right, or both sides of a given string s.
+LTRIM(s, 'set'), RTRIM(s, 'set'), and TRIM(s, 'set') return a string after removing custom set of characters from the left, right, or both sides of a given string s.
+SUBSTRING(s, x, y) returns part of string s, starting from position x and returning the number of characters defined by y.
+LEFT(s, n) returns the first n characters as the substring from the left side (beginning of the string).
+RIGHT(s, n) returns the last n characters as the substring from the right side (end of the string).
+POSITION(c IN s) finds the first occurance (index) of string c in string s.
+STRPOS(s, c) does the same as the POSITION() function but has a different syntax.
+REVERSE() returns text with all the characters in reverse order.
+REPLACE(string, from, to) will replace from with to in the string string.
+TRANSLATE(string, from, to) will make replacements in string based on the sets passed as strings into the from and to parameters.
+REPEAT(x, n) will return the x string repeated n times.
+
+Select
