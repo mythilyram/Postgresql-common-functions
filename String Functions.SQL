@@ -68,11 +68,11 @@ Great! You can also replace parts of a string with anything you want using the R
 It works like this:
 
 REPLACE(string, substring_to_change, new_substring)
-This searches string and, if it finds the substring_to_change, replaces substring_to_change with the text in new_substring. Let's try it!
+This searches string and, if it finds the substring_to_change, replaces substring_to_change with the text in new_substring. Let us try it!
 
 SELECT REPLACE('young man', 'young', 'old');
 In the above example, the function will look for 'young' in the string 'young man' and will replace it with 'old'. 
-As a result, we'll get 'old man'. Of course, you can provide a column name instead of an actual text.
+As a result, we will get 'old man'. Of course, you can provide a column name instead of an actual text.
 
 Let us practice using this function!
 
