@@ -41,7 +41,7 @@ from Painting
 where painted > 1800 or painted isnull
 
 title	painted
-Portrait of Artist's Mother	1888
+Portrait of Artist''s Mother	1888
 Portrait of Patience Escalier	1888
 Self-Portrait	1889
 Impression, Sunrise	null
@@ -63,7 +63,7 @@ on p.artist_id = a.id
 where nationality = 'Dutch' or nationality = 'Flemish'
 
 title	first_name	last_name
-Portrait of Artist's Mother	Vincent	Van Gogh
+Portrait of Artist''s Mother	Vincent	Van Gogh
 Portrait of Patience Escalier	Vincent	Van Gogh
 Self-Portrait	Vincent	Van Gogh
 The Fall of Phaeton	Peter	Rubens
