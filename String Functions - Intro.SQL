@@ -1,3 +1,6 @@
+String Functions
+Find out how to manipulate texts in your database.
+
 Introduction
 In this part, we'll teach you some basic PostgreSQL string functions. They'll help you manipulate text values in your queries, and you'll learn how to:
 
