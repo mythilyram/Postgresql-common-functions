@@ -23,14 +23,17 @@ id	first_name	last_name
 5	Stephen	Colvin
 
 Get to know the character table
-Let's go to the second table. If you love MMORPG games, you'll love this table too. The table is named character, and it stores information about characters in an online role-playing game. Each player can have more than one character. Let's see what this table contains.
+Let's go to the second table. If you love MMORPG games, you'll love this table too. The table is named character, and it stores information about characters in an online role-playing game. 
+Each player can have more than one character. Let us see what this table contains.
 
 Exercise
-Select all columns from the character table. Each character has its own unique id, and is associated with the ID of the player who created it (the player_id column). All characters have reached a certain level, belong to a certain class (e.g., 'wizard' or 'warrior'), and have some money (account_balance).
+Select all columns from the character table. Each character has its own unique id, and is associated with the ID of the player who created it (the player_id column). 
+All characters have reached a certain level, belong to a certain class (e.g., 'wizard' or 'warrior'), and have some money (account_balance).
 
-There are also stats like hp (health points), mp (mana points), strength, and wisdom. Due to various curses and blessings, characters' statistics can be affected by the stat_modifier attribute, which can be positive or negative.
+There are also stats like hp (health points), mp (mana points), strength, and wisdom. Due to various curses and blessings, characters'' statistics can be affected by 
+the stat_modifier attribute, which can be positive or negative.
 
-Finally, there's the height and weight of each character, expressed in meters and kilograms, respectively.
+Finally, there is the height and weight of each character, expressed in meters and kilograms, respectively.
 
 SELECT
 	*
@@ -47,16 +50,22 @@ id	player_id	name	level	class	account_balance	hp	mp	strength	wisdom	stat_modifie
 8	5	Avealath	7	warrior	1023.00	190	95	28	29	17	95.2	1.9
 
 First, a quick review
-Before we continue, let's review what we already know about numbers. Integers are expressed in the following way: 1, 2, 43, -27, etc. Fractions are expressed with a dot (.): 12.45, -401.238, etc. Please note that in some languages, you use a comma instead of a dot, but not in SQL! For example, 12,45 is incorrect.
+Before we continue, let us review what we already know about numbers. 
+
+Integers are expressed in the following way: 1, 2, 43, -27, etc. 
+Fractions are expressed with a dot (.): 12.45, -401.238, etc. 
+Please note that in some languages, you use a comma instead of a dot, but not in SQL! For example, 12,45 is incorrect.
 
 In PostgreSQL (and in most programming languages) there are three kinds of numbers:
 
 Integer (integer): stores integers (e.g., -5, 0, 5, 42).
 Floating-point (real, double precision): stores fractions by approximating them in binary.
 Decimal (numeric): stores fractions in decimal format.
+
 In this part, we'll discuss some of the differences between PostgreSQL's number data types.
 
-Of course, you can use the four basic mathematical operations (add +, subtract -, multiply *, and divide /) with actual numbers in PostgreSQL. You can also use columns and constant numbers together. Take a look at the example below:
+Of course, you can use the four basic mathematical operations (add +, subtract -, multiply *, and divide /) with actual numbers in PostgreSQL. 
+You can also use columns and constant numbers together. Take a look at the example below:
 
 SELECT hp / 4 AS quarter_hp
 FROM character;
