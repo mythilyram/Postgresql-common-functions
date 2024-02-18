@@ -269,7 +269,7 @@ SELECT 5 / 0 AS result;
 ERROR: division by zero Line: 1 Position in the line: 1
 
 Division by zero, part two
-Now let us see what happens if you have many rows, of which only one contains division by 0.
+Now let's see what happens if you have many rows, of which only one contains division by 0.
 
 Exercise
 Warriors get their first wisdom points at Level 2 and we have one warrior at Level 1 with 0 Wisdom points. Let's see what happens.
