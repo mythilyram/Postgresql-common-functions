@@ -1,3 +1,74 @@
+Modifying Strings
+
+The SUBSTRING() function
+You're making great progress!
+
+The functions we've learned so far act on entire string values. We can also manipulate parts of strings, or even single letters. 
+We'll start with the SUBSTRING() function. It looks like this:
+
+SUBSTRING(text FROM start FOR length)
+or the shorter form:
+
+SUBSTRING(text, start, length)
+Here's how you'd use it to select part of a string:
+
+SELECT SUBSTRING(name, 5, 4) AS substring_name
+FROM item;
+The first parameter of SUBSTRING() is the given text (above, the name field). The second parameter tells the function where the substring should start.
+The indexing is 1-based (the first character in the string is available at index 1).
+
+In the above example, we are asking the SUBSTRING() function to start the text fragment at the fifth character. 
+The third parameter, length, indicates how many characters will be returned.
+
+In this case, if the name is 'TripCare', the starting index is 5, and the length is 4, we'll get 'Care' as the result. 
+The database will start at the fifth character, which is 'C', and return that character and the next three characters.
+
+Exercise
+Show the full name of each item and its first four characters after trimming. Name the last column new_name.
+
+SELECT
+    NAME,
+    SUBSTRING(Trim(name),1,4) as new_name
+FROM item
+
+name	new_name
+WashPow(d)er	Wash
+riVer Flow	riVe
+Vacum2000	Vacu
+TripCare	Trip
+Vacum2010	Vacu
+
+The LEFT() and RIGHT() functions
+Fantastic! You can now get a substring (part of a string) from a larger string. But what if you need a substring located at the beginning or end of the string?
+Of course you may use the combination of the SUBSTRING() and LENGTH() functions but there are two other functions that let you do this easier: LEFT() and RIGHT().
+
+As you might guess, LEFT() takes the substring starting at the leftmost (leading) character, and RIGHT() starts from the final character and works backwards. 
+All you need to specify is the string and how many characters you want to return:
+
+SELECT RIGHT(name, 3)
+FROM item;
+In this case, RIGHT() returns the last three letters of an item's name.
+
+Exercise
+The boss of the marketing agency would like to get the first letter of their first name and the last letter of their last name of all copywriters that have both of those names (i.e., both columns aren't NULL). Name the columns first_letter and last_letter.
+
+select
+	left(first_name,1) as first_letter,
+    right(last_name,1) as last_letter
+from copywriter
+where first_name is not null 
+	and last_name is not null
+first_letter	last_letter
+O	s
+A	p
+K	n
+P	e
+M	f
+A	r
+A	n
+P	e
+
+
 The POSITION() function
 Great! Let's try another function.
 
