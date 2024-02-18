@@ -179,7 +179,7 @@ result
 0
 
 Integer division
-Wait... what? We got a 0? After being taught it's 0.25? Has someone deceived us?
+Wait... what? We got a 0? After being taught it is 0.25? Has someone deceived us?
 
 Not really.
 
@@ -262,7 +262,7 @@ Rolamar	3	2.3076923076923077
 Avealath	7	2.0000000000000000
 
 Division by zero, part one
-Okay, let's discuss the division problem further. As you know, there is one thing that you can never do: divide by zero. Let's see what happens when we follow the path of mathematical darkness and divide by zero...
+Okay, let us discuss the division problem further. As you know, there is one thing that you can never do: divide by zero. Let's see what happens when we follow the path of mathematical darkness and divide by zero...
 
 SELECT 5 / 0 AS result;
 
