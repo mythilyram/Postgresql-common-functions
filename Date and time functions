@@ -1,7 +1,7 @@
 Learn how to work with date and time data in PostgreSQL.
 
 The route table
-Let's introduce the tables we're going to work with. A (fictional) European airline called PerfectAir has shared some of its data. Let's see what we've received from them.
+Let's introduce the tables we are going to work with. A (fictional) European airline called PerfectAir has shared some of its data. Let's see what we've received from them.
 
 Exercise
 Select all information from the route table. This table keeps track of the flight routes used by PerfectAir. Each route has these columns:
