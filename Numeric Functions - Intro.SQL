@@ -8,6 +8,7 @@ Let's introduce the table we'll use in this part of the course. The first table 
 id – identifier of the player.
 first_name – first name of the player.
 last_name – last name of the player.
+
 Exercise
 Select all data from the player table.
 
@@ -23,8 +24,8 @@ id	first_name	last_name
 5	Stephen	Colvin
 
 Get to know the character table
-Let's go to the second table. If you love MMORPG games, you'll love this table too. The table is named character, and it stores information about characters in an online role-playing game. 
-Each player can have more than one character. Let us see what this table contains.
+Let's go to the second table. If you love MMORPG games, you'll love this table too. The table is named character, and it stores information about 
+characters in an online role-playing game. Each player can have more than one character. Let us see what this table contains.
 
 Exercise
 Select all columns from the character table. Each character has its own unique id, and is associated with the ID of the player who created it (the player_id column). 
