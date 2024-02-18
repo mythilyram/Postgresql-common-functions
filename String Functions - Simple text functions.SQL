@@ -71,7 +71,7 @@ id
 5
 
 The LOWER() and UPPER() functions
-Right! Let's move on to another text function: LOWER().
+Right! Let us move on to another text function: LOWER().
 
 Whatever is passed as an argument to LOWER() will be written in small (lowercase) letters:
 
@@ -79,7 +79,8 @@ SELECT LOWER(last_name) AS lower_name
 FROM copywriter;
 LOWER() returns 'turner' for 'Turner'.
 
-If there is a function for lowercase letters, there must be a function for capital (uppercase) letters too. There is! It's called UPPER() and works in a similar way:
+If there is a function for lowercase letters, there must be a function for capital (uppercase) letters too. 
+There is! It is called UPPER() and works in a similar way:
 
 SELECT UPPER(last_name) AS upper_name
 FROM copywriter;
@@ -103,14 +104,14 @@ id	trendy_slogan
 5	powderful experience.
 6	cleaning your house has never been so easy.
 7	pleasure and responsibility come together.
-8	each traveller's choice.
+8	each traveller''s choice.
 
 The INITCAP() function
 Nice! Yet another function is INITCAP(), which will change the first letter of each word of text to upper case and the rest of the characters to lower. This is also called "title case". For instance, if someone mistakenly inserted first name as 'olivier' and last name with caps lock as 'sMITH', the query:
 
 SELECT INITCAP(first_name || ' ' || last_name)
 FROM copywriter;
-will show 'Olivier Smith'. That's usually a convenient way to show names in a proper way.
+will show 'Olivier Smith'. That is usually a convenient way to show names in a proper way.
 
 Exercise
 The boss wants you to update the names of all the items so that they are title cased. Show the id of each item together with its original name (as old_name) and the new name (as new_name).
@@ -129,7 +130,7 @@ id	old_name	new_name
 5	Vacum2010	Vacum2010
 
 The LTRIM() and RTRIM() functions
-Great! Let's look at functions that remove leading or trailing spaces from a string.
+Great! Let us look at functions that remove leading or trailing spaces from a string.
 
 One of these is LTRIM(). It removes the leading (left) spaces from a string.
 
@@ -164,7 +165,10 @@ No trim: TripCare	Trim:TripCare
 No trim:Vacum2010	Trim:Vacum2010
 
 The TRIM() function
-You now know two functions that remove either leading or trailing spaces. Sometimes you need to remove both leading and trailing spaces. With PostgreSQL, you can do this with the TRIM() function. It only requires one parameter. Take a look:
+You now know two functions that remove either leading or trailing spaces. 
+Sometimes you need to remove both leading and trailing spaces. 
+With PostgreSQL, you can do this with the TRIM() function. 
+It only requires one parameter. Take a look:
 
 SELECT TRIM(' Martin Smith      from England   .   ');
 After calling this function, you get:
