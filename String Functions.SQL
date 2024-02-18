@@ -77,7 +77,7 @@ As a result, we'll get 'old man'. Of course, you can provide a column name inste
 Let us practice using this function!
 
 Exercise
-For the slogan with an ID of 1, replace the word 'Feel' with 'Touch'. Show the slogan's original text and the updated text as the updated_text column.
+For the slogan with an ID of 1, replace the word 'Feel' with 'Touch'. Show the slogan''s original text and the updated text as the updated_text column.
 
 SELECT
 	text,
