@@ -33,7 +33,8 @@ TripCare	backpack	TripCare -backpack
 Vacum2010	null	null
 
 The CONCAT() function
-Excellent! You can use the || operator to concatenate string values, but it is not the only way. PostgreSQL also provides the CONCAT() function. Here is how to use CONCAT() to join a slogan's id, type, and copywriter_id:
+Excellent! You can use the || operator to concatenate string values, but it is not the only way. PostgreSQL also provides the CONCAT() function. 
+Here is how to use CONCAT() to join a slogan''s id, type, and copywriter_id:
 
 SELECT CONCAT(id, ' ', type, ' ', copywriter_id) AS slogan
 FROM slogan;
@@ -72,7 +73,7 @@ Great! You know two ways to concatenate values: the || operator and the CONCAT()
 
 Think back to using the || operator. When there was a NULL value in one of the joining columns, what was returned? A NULL.
 
-The CONCAT() function converts NULL to an empty string. Let's see this in an example. Remember, if any of the columns you work with can contain a NULL, use the CONCAT() function and not the || operator.
+The CONCAT() function converts NULL to an empty string. Let us see this in an example. Remember, if any of the columns you work with can contain a NULL, use the CONCAT() function and not the || operator.
 
 Exercise
 In this exercise, just look at the result.
