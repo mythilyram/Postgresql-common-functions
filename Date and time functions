@@ -1,0 +1,113 @@
+Learn how to work with date and time data in PostgreSQL.
+
+The route table
+Let's introduce the tables we're going to work with. A (fictional) European airline called PerfectAir has shared some of its data. Let's see what we've received from them.
+
+Exercise
+Select all information from the route table. This table keeps track of the flight routes used by PerfectAir. Each route has these columns:
+
+code – unique internal ID code.
+from_airport – international code for the departure airport.
+to_airport – international code for the arrival airport.
+distance – route distance, expressed in kilometers.
+departure_time – planned departure time.
+arrival_time – planned arrival time.
+
+SELECT 
+	*
+FROM route
+
+code	from_airport	to_airport	distance	departure_time	arrival_time
+PA2342	FRA	WAW	558	07:55:00	09:30:00
+PA8793	MAD	NRT	6701	13:20:00	04:35:00
+PA5643	GLA	DUB	185	21:50:00	22:50:00
+PA8744	WMI	CRL	710	10:25:00	12:15:00
+PA2134	KEF	GDN	1564	21:25:00	00:55:00
+PA3424	BLQ	MAD	807	08:00:00	10:45:00
+PA7155	JFK	CDG	5847	11:05:00	18:35:00
+PA6851	LHR	PRY	8949	16:55:00	11:35:00
+PA3425	ARN	SXF	810	14:15:00	15:50:00
+PA1269	FCO	CDG	1100	18:05:00	20:15:00
+PA7653	VCE	FCO	550	19:20:00	20:40:00
+PA4097	ZRH	MUC	240	23:15:00	23:55:00
+PA8542	FRA	NRT	9300	02:10:00	13:45:00
+PA9073	WAW	LHR	1445	05:00:00	08:15:00
+
+The aircraft table
+Good! Let's see some data about the aircraft.
+
+Exercise
+Select all information from the aircraft table. PerfectAir has its own fleet, and each aircraft is listed in this table. It contains the following columns:
+
+id – an internal ID for the aircraft.
+model – the aircraft's make and model.
+produced_date – the date when production on that aircraft was completed.
+registration_timestamp – the date and time when that aircraft was registered.
+launched_timestamp – the date of that aircraft's first PerfectAir flight.
+withdrawn_timestamp – the date when that aircraft finished its last PerfectAir flight.
+Note that the produced_date and launched_timestamp dates may differ significantly (e.g., if PerfectAir bought a used aircraft).
+
+You may have noticed that launched_timestamp is a more accurate column – it shows both the date and the moment. This is because PerfectAir wants to mark the exact moment of the aircraft's first takeoff.
+
+
+SELECT 
+	*
+FROM aircraft
+
+id	model	produced_date	registration_timestamp	launched_timestamp	withdrawn_timestamp
+1	Airbus A321-200	2014-04-05	2014-04-15 00:00:00	2014-06-10 07:55:00	null
+2	Airbus A333-300	2014-01-03	2014-01-13 00:00:00	2015-01-01 13:19:00	null
+3	Boeing 737-800	2010-03-01	2010-03-11 00:00:00	2010-04-01 21:58:00	2015-10-14 20:00:00
+4	Airbus A320	2008-04-06	2008-04-09 00:00:00	2014-01-01 21:19:00	null
+5	Boeing 737-800	2009-12-31	2009-12-31 00:00:00	2012-01-01 10:14:00	2016-08-01 09:30:00
+6	Airbus A320	2009-04-13	2009-04-19 00:00:00	2014-01-05 21:38:00	2013-01-05 21:38:00
+7	Boeing 787-10	2011-01-01	2011-02-01 00:00:00	2011-11-17 11:17:00	null
+8	Boeing 777-300	1993-08-26	1993-08-30 00:00:00	2015-12-31 22:13:00	2016-10-15 12:52:00
+9	Airbus A300-600	2013-01-01	2013-01-11 00:00:00	2014-02-23 06:53:00	2015-10-14 00:19:00
+10	Airbus A380-900	2007-10-25	2007-11-29 00:00:00	2014-12-31 15:15:00	null
+11	Embraer 170	2012-12-31	2013-01-12 00:00:00	2013-01-01 16:52:00	null
+12	Vision SF50	2015-01-01	2015-02-01 00:00:00	2016-01-01 09:31:00	null
+13	Airbus A320	2016-06-06	2016-07-01 00:00:00	2016-08-28 10:35:00	null
+14	Embraer 170	2016-08-10	2016-09-05 00:00:00	2016-09-20 16:23:00	null
+15	Boeing 777-800	2010-03-01	2010-04-08 00:00:00	2012-01-01 10:14:00	null
+
+The flight table
+The last table we'll work with is flight. Let's check it out.
+
+Exercise
+Select all information from the flight table.
+
+This table lists individual flights with IDs (the id column) for a set route (route_code) with a specific aircraft (aircraft_id) on a given date (flight_date).
+
+It also contains another column, delay, that is expressed in minutes. A positive value in this column means that the arrival was indeed delayed. A negative value indicates that the plane landed ahead of schedule.
+
+SELECT * FROM  flight
+
+id	route_code	aircraft_id	flight_date	delay
+1	PA2342	1	2016-04-03	0
+2	PA2342	1	2016-01-01	15
+3	PA8793	2	2015-07-11	-13
+4	PA5643	3	2014-12-31	5
+5	PA5643	3	2015-08-13	0
+6	PA5643	3	2015-08-14	35
+7	PA5643	3	2016-01-01	8
+8	PA8744	3	2016-01-20	0
+9	PA8744	3	2016-02-21	-25
+10	PA2134	4	2015-10-10	-10
+11	PA2134	4	2015-08-14	16
+12	PA2342	5	2015-12-30	4
+13	PA7155	7	2016-06-08	20
+14	PA6851	7	2015-12-31	5
+15	PA8744	9	2015-08-31	30
+16	PA5643	8	2015-01-01	0
+17	PA6851	10	2016-02-26	-5
+18	PA8793	10	2016-04-03	45
+19	PA3425	1	2016-04-09	20
+20	PA1269	2	2016-08-11	5
+21	PA7653	3	2014-09-20	0
+22	PA4097	4	2014-01-29	-5
+23	PA8542	5	2016-06-09	10
+24	PA9073	7	2016-01-02	5
+25	PA6851	15	2014-01-02	0
+
+
