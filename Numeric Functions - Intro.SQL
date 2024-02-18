@@ -262,14 +262,14 @@ Rolamar	3	2.3076923076923077
 Avealath	7	2.0000000000000000
 
 Division by zero, part one
-Okay, let us discuss the division problem further. As you know, there is one thing that you can never do: divide by zero. Let's see what happens when we follow the path of mathematical darkness and divide by zero...
+Okay, let us discuss the division problem further. As you know, there is one thing that you can never do: divide by zero. 
 
 SELECT 5 / 0 AS result;
 
 ERROR: division by zero Line: 1 Position in the line: 1
 
 Division by zero, part two
-Now let's see what happens if you have many rows, of which only one contains division by 0.
+Now let us see what happens if you have many rows, of which only one contains division by 0.
 
 Exercise
 Warriors get their first wisdom points at Level 2 and we have one warrior at Level 1 with 0 Wisdom points. Let's see what happens.
