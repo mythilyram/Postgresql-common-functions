@@ -8,7 +8,7 @@ Select substrings and find their position in a string.
 Find the length of a string.
 Trim a string.
 Replace parts of a string.
-We'll work with data from a marketing agency. Let's go!
+We'll work with data from a marketing agency. Let us go!
 
 Exercise
 Select all data from the item table. It contains the following columns:
@@ -50,7 +50,7 @@ id	first_name	last_name
 9	null	Lawrence
 
 The slogan table
-Finally, let's look at the third table.
+Finally, let us look at the third table.
 
 Exercise
 Select all data from the slogan table. For each record, we have:
