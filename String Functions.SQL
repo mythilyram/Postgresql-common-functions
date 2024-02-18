@@ -123,7 +123,7 @@ WHERE c.id IN (1,2,3,4)
 
 new_slogan      	                    first_name	      last_name
 Feel_the_difference._Feel_the_powder.	  Kate	          Gordon
-You'll_simply_love_it.	              Penelope	        Stone
+You will_simply_love_it.	              Penelope	        Stone
 Powderful_experience.	                  Anne	          Sharp
 Each_traveller's_choice.            	Olivier	          Norris
 
