@@ -4,7 +4,7 @@ The SUBSTRING() function
 You're making great progress!
 
 The functions we've learned so far act on entire string values. We can also manipulate parts of strings, or even single letters. 
-We'll start with the SUBSTRING() function. It looks like this:
+We will start with the SUBSTRING() function. It looks like this:
 
 SUBSTRING(text FROM start FOR length)
 or the shorter form:
@@ -20,7 +20,7 @@ The indexing is 1-based (the first character in the string is available at index
 In the above example, we are asking the SUBSTRING() function to start the text fragment at the fifth character. 
 The third parameter, length, indicates how many characters will be returned.
 
-In this case, if the name is 'TripCare', the starting index is 5, and the length is 4, we'll get 'Care' as the result. 
+In this case, if the name is 'TripCare', the starting index is 5, and the length is 4, we will get 'Care' as the result. 
 The database will start at the fifth character, which is 'C', and return that character and the next three characters.
 
 Exercise
