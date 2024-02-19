@@ -29,6 +29,7 @@ INTERVAL '5 months'
 INTERVAL '1 year'
 You can add such intervals to a date/timestamp:
 
+
 SELECT
   id,
   launched_timestamp,
@@ -142,5 +143,121 @@ Check it out for yourself!
 
 Exercise
 Count the number of flights performed within 180 days from the beginning of August 2015. Name the column flights.
+
+
+SELECT
+	COUNT(id) AS flights
+FROM flight
+WHERE flight_date >= '2015-08-01' AND 
+	flight_date <='2015-08-01'::date+INTERVAL '180 DAYS'
+    
+--not working BETWEEN-- WHERE flight_date BETWEEN '2015-08-01' AND '2015-08-01'::date+INTERVAL '180 DAYS'
+
+flights
+11
+
+The OVERLAPS operator
+Great! PostgreSQL has also another useful operator – OVERLAPS:
+
+(start1, end1) OVERLAPS
+(start2, end2)
+As you may guess, it yields true when the two time periods (defined by their endpoints) overlap, and false when they don't.
+
+The OVERLAPS operator works great with intervals too:
+
+(start1, interval) OVERLAPS
+(start2, interval)
+Exercise
+Let's see what aircraft were used while the Boeing 777-300 (ID of 8) was flying. In this exercise, just run the template query.
+
+Note that you won't see aircraft that are still in use (those of NULL value in the withdrawn_timestamp column). We will learn how to show them in the next part of the course.
+
+SELECT other.id, other.model
+FROM aircraft other, aircraft boeing
+WHERE boeing.id = 8
+  AND other.id != 8
+  AND (other.launched_timestamp,  other.withdrawn_timestamp) OVERLAPS
+      (boeing.launched_timestamp, boeing.withdrawn_timestamp);
+
+id	model	produced_date	registration_timestamp	launched_timestamp	withdrawn_timestamp
+1	Airbus A321-200	2014-04-05	2014-04-15 00:00:00	2014-06-10 07:55:00	null
+2	Airbus A333-300	2014-01-03	2014-01-13 00:00:00	2015-01-01 13:19:00	null
+3	Boeing 737-800	2010-03-01	2010-03-11 00:00:00	2010-04-01 21:58:00	2015-10-14 20:00:00
+4	Airbus A320	2008-04-06	2008-04-09 00:00:00	2014-01-01 21:19:00	null
+5	Boeing 737-800	2009-12-31	2009-12-31 00:00:00	2012-01-01 10:14:00	2016-08-01 09:30:00
+6	Airbus A320	2009-04-13	2009-04-19 00:00:00	2014-01-05 21:38:00	2013-01-05 21:38:00
+7	Boeing 787-10	2011-01-01	2011-02-01 00:00:00	2011-11-17 11:17:00	null
+8	Boeing 777-300	1993-08-26	1993-08-30 00:00:00	2015-12-31 22:13:00	2016-10-15 12:52:00
+9	Airbus A300-600	2013-01-01	2013-01-11 00:00:00	2014-02-23 06:53:00	2015-10-14 00:19:00
+10	Airbus A380-900	2007-10-25	2007-11-29 00:00:00	2014-12-31 15:15:00	null
+11	Embraer 170	2012-12-31	2013-01-12 00:00:00	2013-01-01 16:52:00	null
+12	Vision SF50	2015-01-01	2015-02-01 00:00:00	2016-01-01 09:31:00	null
+13	Airbus A320	2016-06-06	2016-07-01 00:00:00	2016-08-28 10:35:00	null
+14	Embraer 170	2016-08-10	2016-09-05 00:00:00	2016-09-20 16:23:00	null
+15	Boeing 777-800	2010-03-01	2010-04-08 00:00:00	2012-01-01 10:14:00	null
+
+The AGE() function
+Great! Let's look at the AGE(start_timestamp) function. It takes only one date and returns the difference between the current date and time, and the one given as the argument. Look at the example below:
+
+SELECT AGE(flight_date)
+FROM flight;
+This query returns the time duration between today and the flight date.
+
+Exercise
+For each aircraft show its ID and how much time has passed since withdrawing as the difference column.
+
+SELECT
+	id,
+    AGE(withdrawn_timestamp) AS difference
+FROM aircraft
+
+id	difference
+1	null
+2	null
+3	8 years 4 mons 4 days 04:00:00
+4	null
+5	7 years 6 mons 17 days 14:30:00
+6	11 years 1 mon 13 days 02:22:00
+7	null
+8	7 years 4 mons 3 days 11:08:00
+9	8 years 4 mons 4 days 23:41:00
+The AGE() function – continued
+Awesome! Sometimes we want to know, for example, how old a person was on the day of their death. We will use another syntax of the AGE() function:
+
+AGE(end_timestamp, start_timestamp)
+Note that the start_timestamp is counter-intuitively the second argument.
+
+The query below returns an interval of time between withdrawn timestamp and launched timestamp:
+
+SELECT AGE(withdrawn_timestamp, launched_timestamp)
+FROM aircraft
+WHERE id = 9;
+age
+1 years 7 mons 18 days 17 hours 26 mins 0.00 secs
+The returned result is the actual difference between the time this aircraft was launched and the time it was withdrawn. The result of the AGE() is the interval.
+
+Exercise
+For each aircraft, select its ID and show the difference in years, months, and days between its registration and production date (as the difference column).
+SELECT 
+	id,
+    AGE(registration_timestamp,produced_date) difference
+FROM aircraft
+
+id	difference
+1	10 days
+2	10 days
+3	10 days
+4	3 days
+5	00:00:00
+6	6 days
+7	1 mon
+8	4 days
+9	10 days
+10	1 mon 4 days
+11	12 days
+12	1 mon
+13	25 days
+14	26 days
+15	1 mon 7 days
 
 
