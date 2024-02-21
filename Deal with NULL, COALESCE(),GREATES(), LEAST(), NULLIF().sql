@@ -374,3 +374,47 @@ Okay, let's see how much you remember. Exercise 1 is waiting for you!
 
 Exercise
 Show all product names and the 3rd market shop's prices (casted to char). If the price is NULL, display 'unknown'. The price column should be named price.
+
+SELECT
+	name,
+    COALESCE(CAST(market3_price AS CHAR),'unknown') AS price
+FROM product
+
+name	price
+Vaatekaappi	2
+Spisebord	1
+Salongbord	unknown
+Tekanna	1
+Haarukka	unknown
+Handduk	9
+Krus	1
+null	1
+
+Exercise 2
+That's great! Let's see how you fare with Exercise 2.
+
+Exercise
+For each product, show three columns:
+
+id
+product_type – the type of the product. If there is no product type, show 'unknown type'.
+new_launch_date – the launch date. If the launch_date is NULL, show the current date instead (use CURRENT_DATE).
+Order the results by new_launch_date, with the oldest dates appearing first.
+
+SELECT
+	id,
+    COALESCE(type,'unknown type') AS product_type,
+	COALESCE(launch_date,CURRENT_DATE) AS new_launch_date
+FROM product
+ORDER BY new_launch_date 
+
+id	product_type	new_launch_date
+8	mirror	2013-01-01
+7	unknown type	2013-04-30
+5	fork	2014-07-05
+4	unknown type	2015-02-25
+1	wardrobe	2015-08-01
+3	coffee table	2016-01-01
+6	towel	2024-02-21
+2	dining table	2024-02-21
+
